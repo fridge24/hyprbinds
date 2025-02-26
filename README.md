@@ -7,7 +7,7 @@ view all binds for that key, and select which one they would like to remove. Sup
 commands - will add the rest soon, as well as the ability write a custom command the same way you would in 
 your hyprland.conf. For example, select exec as your command then enter your command in the input box beside it
 
-NOTE: you WILL have to create a separate source file in your ~/.config/hypr dirname this file hyprland-keybinds.conf or if you would like edit the source code to define a custom path.this is because the application reads the keybinds from a user defined config file as to not overwrite any content in your main hypr.conf 
+NOTE: you WILL have to create a separate source file in your ~/.config/hypr dir name this file hyprland-keybinds.conf or if you would like edit the source code to define a custom path. Then remove all of your existing binds from your ~/.config/hypr/hyprland.conf and place them in this file. This is because the application reads the keybinds from a user defined config file as to not overwrite any content in your main hypr.conf 
 
 The application functions by extracting your current hyprland-keybinds.conf file to a json file. All bind edits within the application are written to the json file until the user selects apply. At that point the updated binds list from the json file is formatted, and re-applied to your hyprland-keybinds.conf. The application also checks for duplicates to ensure that you do not add multiple binds with the same key strokes. (If you would like to exec multiple commands with a single keypress this must be maually configured in your keybinds file though multi command support is a future target.)
 
