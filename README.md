@@ -1,15 +1,15 @@
 Hyprbinds - A GUI tool for configuring Hyprland keybinds
 
 Hyprbinds is a tool that allows Hyprland users to easily add, remove and view existing keybinds. 
+
 There is a visual representation of a keyboard the indicates which keys are bound. As well as simple dialogs
-to create a bind by selecting modkeys and a number or letter. The remove dialog allows users to enter a key 
-view all binds for that key, and select which one they would like to remove. Supports some basic hyprland 
+to create a bind by selecting modkeys and a number or letter along with your desired command. The remove dialog allows users to enter a key, view all binds for that key, and then select which one they would like to remove. Or you can just view from the dropdown list of all binds. The application currently supports some basic hyprland 
 commands - will add the rest soon, as well as the ability write a custom command the same way you would in 
-your hyprland.conf. For example, select exec as your command then enter your command in the input box beside it
+your hyprland.conf. For example, select exec as your command then enter your custom command in the input box.
 
-NOTE: you WILL have to create a separate source file in your ~/.config/hypr dir name this file hyprland-keybinds.conf or if you would like edit the source code to define a custom path. Then remove all of your existing binds from your ~/.config/hypr/hyprland.conf and place them in this file. This is because the application reads the keybinds from a user defined config file as to not overwrite any content in your main hypr.conf 
+NOTE: You WILL have to create a separate source file in your ~/.config/hypr directory. Name this file hyprland-keybinds.conf or if you would like, edit the source code to define a custom path. Then remove all of your existing keybinds from your ~/.config/hypr/hyprland.conf and place them in this file. This is because the application reads the keybinds from a user defined config file as to not overwrite any content in your main hypr.conf. I intend to add the ability to perform this task from the gui in the future.  
 
-The application functions by extracting your current hyprland-keybinds.conf file to a json file. All bind edits within the application are written to the json file until the user selects apply. At that point the updated binds list from the json file is formatted, and re-applied to your hyprland-keybinds.conf. The application also checks for duplicates to ensure that you do not add multiple binds with the same key strokes. (If you would like to exec multiple commands with a single keypress this must be maually configured in your keybinds file though multi command support is a future target.)
+The application functions by extracting all the lines that contain binds from your current hyprland-keybinds.conf file to a json file. All bind additions and removals within the application are written to the json file until the user selects apply. At that point, the updated json binds list with whatever modifications you made is formatted and re-applied to your hyprland-keybinds.conf. The application also checks for duplicates to ensure that you do not add multiple binds with the same key strokes. (If you would like to exec multiple commands with a single keypress this must be maually configured in your hyprland-keybinds.conf file, though multi command support is another future target.
 
 No official packages or release yet - Will be officially released first for Arch linux then potentially other distros
 
