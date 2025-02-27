@@ -1,7 +1,7 @@
 # Maintainer: fridge24 <https://github.com/fridge24/hyprbinds>
 
 pkgname=hyprbinds
-pkgver=1.0.0
+pkgver=1.0.1
 pkgrel=1
 pkgdesc="Hyprbinds, a PyQt6 gui application for modifiying keybinds within Hyprland"
 arch=('x86_64')
