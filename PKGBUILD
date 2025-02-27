@@ -9,7 +9,7 @@ url="https://github.com/fridge24/hyprbinds"
 license=('MIT') 
 depends=('python' 'python-pyqt6')
 source=("https://github.com/fridge24/hyprbinds/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('SKIP')  # Replace with actual checksum
+sha256sums=('0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5')  
 
 package() {
     install -Dm755 "$srcdir/$pkgname-$pkgver/src/main.py" "$pkgdir/usr/bin/$pkgname"
