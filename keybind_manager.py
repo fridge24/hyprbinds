@@ -2,16 +2,36 @@ import os
 import json
 import shutil
 
-KEYBINDS_FILE = os.path.expanduser("~/.config/hypr/hyprland-keybinds.conf")
-TEST_KEYBINDS_FILE = os.path.expanduser("~/projects/hyprBinds/test-hyprland-keybinds.conf")
-JSON_KEYBINDS_FILE = os.path.expanduser("~/projects/hyprBinds/keybinds.json")
+CONFIG_FILE = os.path.expanduser("~/.config/hyprbinds/keyboard_config.json")
+JSON_KEYBINDS_FILE = os.path.expanduser("~/.config/hyprbinds/keybinds.json")
+
+def get_keybinds_path():
+    """Extracts the keybinds file path from a JSON config file."""
+    config_path = os.path.expanduser("~/.config/hyprbinds/keybinds_config.json")
+    
+    try:
+        with open(config_path, "r") as file:
+            data = json.load(file)
+            if "keybinds_path" in data:
+                return os.path.expanduser(data["keybinds_path"])
+            else:
+                raise KeyError("Missing 'keybinds_path' in JSON config.")
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"Error reading keybinds path: {e}")
+        return None
+
+# Set KEYBINDS_FILE dynamically
+KEYBINDS_FILE = get_keybinds_path()
+
+# Validate the extracted path
+if not KEYBINDS_FILE or not os.path.exists(KEYBINDS_FILE):
+    print(f"Error: Keybinds file '{KEYBINDS_FILE}' does not exist.")
 
 class KeybindManager:
     def __init__(self):
         """Initialize the keybind manager and parse existing keybinds."""
         self.keybinds = self.parse_keybinds()
         self.save_json_keybinds()  # Overwrite JSON file with fresh keybinds
-
 
     def parse_keybinds(self):
         """Reads the config file and extracts keybinds into a nested dictionary."""
@@ -54,11 +74,6 @@ class KeybindManager:
             with open(JSON_KEYBINDS_FILE, "r") as file:
                 self.keybinds.update(json.load(file))
 
-    def save_json_keybinds(self):
-        """Saves the current keybinds to a JSON file."""
-        with open(JSON_KEYBINDS_FILE, "w") as file:
-            json.dump(self.keybinds, file, indent=4)
-
     def parse_json(self):
         try:
             with open(JSON_KEYBINDS_FILE, "r") as file:
@@ -82,9 +97,9 @@ class KeybindManager:
     def apply_keybind_changes(self):
         keybinds_config = self.parse_json()
         try:
-            with open(TEST_KEYBINDS_FILE, "w") as file:
+            with open(KEYBINDS_FILE, "w") as file:
                 file.write("\n".join(keybinds_config) + "\n")
-            print(f"Keybinds updated successfully in {TEST_KEYBINDS_FILE}")
+            print(f"Keybinds updated successfully in {KEYBINDS_FILE}")
         except Exception as e:
             print(f"Error updating keybinds: {e}")
 
